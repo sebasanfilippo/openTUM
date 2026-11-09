@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>openTUM — Configuración</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header><h1>Configuración</h1><button id="btnPanel">Panel</button></header>
+<main>
+  <section class="tarjeta"><h2>Proveedores</h2>
+    <label class="opcion"><span>Claude Code<div class="muted">Línea de estado de Claude Code o sesión de la CLI <code>claude</code>.</div></span><input type="checkbox" data-prov="claude_code"></label>
+    <label class="opcion"><span>Codex<div class="muted">Sesión de la CLI <code>codex</code> con cuenta de ChatGPT.</div></span><input type="checkbox" data-prov="codex"></label>
+    <label class="opcion"><span>Antigravity<div class="muted">CLI <code>agy</code> o sesión de Antigravity.</div></span><input type="checkbox" data-prov="antigravity"></label>
+    <label class="opcion"><span>xAI<div class="muted" id="xaiEstado">Requiere Team ID y clave de gestión.</div></span><input type="checkbox" data-prov="xai"></label>
+    <p class="muted">Para Claude Code, agregue en <code>~/.claude/settings.json</code>:
+      <code>"statusLine": {"type": "command", "command": "opentum --statusline"}</code></p>
+  </section>
+  <section class="tarjeta"><h2>Clave de gestión de xAI</h2>
+    <p class="muted">La clave se verifica con la Management API y se guarda en el llavero de la sesión. No se escribe en archivos de la aplicación.</p>
+    <label class="opcion"><span>Team ID</span><input type="text" id="teamId" maxlength="64" size="30"></label>
+    <label class="opcion"><span>Clave de gestión</span><input type="password" id="clave" size="30" autocomplete="off"></label>
+    <div class="acciones"><button class="primario" id="btnClave">Registrar clave</button></div>
+    <p id="msgClave" class="mensaje" hidden></p>
+  </section>
+  <section class="tarjeta"><h2>Alertas</h2>
+    <label class="opcion"><span>Primer umbral (%)</span><input type="number" id="u1" min="1" max="100"></label>
+    <label class="opcion"><span>Segundo umbral (%)</span><input type="number" id="u2" min="1" max="100"></label>
+    <label class="opcion"><span>Saldo mínimo (USD)<div class="muted">Vacío: sin alerta de saldo.</div></span><input type="number" id="saldo" min="0" step="0.01"></label>
+    <label class="opcion"><span>Silenciar notificaciones</span><input type="checkbox" id="silencio"></label>
+    <label class="opcion"><span>Desde / hasta</span><span><input type="time" id="desde"> <input type="time" id="hasta"></span></label>
+  </section>
+  <section class="tarjeta"><h2>Actualización</h2>
+    <label class="opcion"><span>Intervalo (minutos)<div class="muted">Entre 2 y 60; por omisión, 5.</div></span><input type="number" id="intervalo" min="2" max="60"></label>
+  </section>
+  <div class="acciones"><button class="primario" id="btnGuardar">Guardar</button></div>
+  <p id="msg" class="mensaje" hidden></p>
+  <section class="tarjeta"><h2>Eliminar datos</h2>
+    <p class="muted">Se eliminarán solo las claves guardadas por openTUM en el llavero y sus archivos (config.json, lecturas.json y alertas.json). Las sesiones y credenciales de las CLI no se modifican.</p>
+    <div class="acciones"><button class="peligro" id="btnEliminar">Eliminar datos de openTUM…</button></div>
+  </section>
+</main>
+<script src="comun.js"></script><script src="config.js"></script>
+</body></html>

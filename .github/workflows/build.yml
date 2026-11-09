@@ -1,0 +1,30 @@
+name: build
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependencias de Ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev libxdo-dev libsecret-1-dev
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Pruebas
+        working-directory: src-tauri
+        run: cargo test
+      - name: Paquetes
+        working-directory: src-tauri
+        run: |
+          cargo install tauri-cli --version "^2" --locked
+          cargo tauri build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paquetes
+          path: |
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/appimage/*.AppImage

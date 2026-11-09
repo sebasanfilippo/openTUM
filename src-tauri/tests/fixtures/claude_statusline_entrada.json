@@ -1,0 +1,9 @@
+{
+  "session_id": "00000000-0000-0000-0000-000000000000",
+  "model": { "id": "<modelo>", "display_name": "<modelo>" },
+  "workspace": { "current_dir": "/home/usuario/proyecto" },
+  "rate_limits": {
+    "five_hour": { "used_percentage": 23.5, "resets_at": 1792008000 },
+    "seven_day": { "used_percentage": 41.2, "resets_at": 1792443600 }
+  }
+}

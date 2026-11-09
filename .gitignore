@@ -1,0 +1,9 @@
+.DS_Store
+src-tauri/.DS_Store
+src-tauri/src/.DS_Store
+src-tauri/tests/.DS_Store
+/src-tauri/target/
+/src-tauri/gen/
+*.AppImage
+*.deb
+dist/

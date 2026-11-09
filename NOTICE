@@ -1,0 +1,12 @@
+openTUM
+Copyright (C) 2026 Sebastián Andrés Sanfilippo
+Distribuido bajo la Licencia Pública General de GNU, versión 3 o posterior (LICENSE).
+
+Referencias de diseño
+---------------------
+Los mecanismos alternativos de consulta de Claude Code, Codex y Antigravity siguen la documentación y
+el enfoque de los siguientes proyectos, publicados bajo licencia MIT. openTUM no incluye su código;
+implementa en Rust la interpretación de las respuestas a partir de la documentación de referencia.
+
+- OpenUsage, Copyright (c) Robin Ebers. https://github.com/robinebers/openusage
+- OpenQuota, Copyright (c) 2026 deviffyy. https://github.com/deviffyy/openquota

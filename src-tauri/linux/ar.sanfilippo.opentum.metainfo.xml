@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>ar.sanfilippo.opentum</id>
+  <name>openTUM</name>
+  <summary>Monitor de consumo de servicios de IA</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <developer id="ar.sanfilippo">
+    <name>Sebastián Andrés Sanfilippo</name>
+  </developer>
+  <description>
+    <p>
+      Muestra en el área de indicadores de Ubuntu el consumo de Claude Code, OpenAI Codex,
+      xAI (Grok) y Google Antigravity: el uso de cada ventana de cuota en su unidad propia,
+      el momento del reinicio, el origen del dato y su antigüedad.
+    </p>
+    <p>
+      Avisa una sola vez por umbral y por ventana, conserva el último valor válido ante una
+      falla de la fuente y guarda la clave de gestión de xAI en el llavero de la sesión.
+    </p>
+  </description>
+  <launchable type="desktop-id">openTUM.desktop</launchable>
+  <icon type="stock">opentum</icon>
+  <url type="homepage">https://github.com/sebasanfilippo/openTUM</url>
+  <url type="bugtracker">https://github.com/sebasanfilippo/openTUM/issues</url>
+  <url type="vcs-browser">https://github.com/sebasanfilippo/openTUM</url>
+  <categories>
+    <category>Utility</category>
+    <category>Monitor</category>
+  </categories>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-11-08">
+      <description><p>Prototipo del trabajo final de graduación.</p></description>
+    </release>
+  </releases>
+  <provides>
+    <binary>opentum</binary>
+  </provides>
+</component>

@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Ventanas del panel, del detalle y de la configuración",
+  "windows": ["panel", "detalle", "config"],
+  "permissions": ["core:default"]
+}

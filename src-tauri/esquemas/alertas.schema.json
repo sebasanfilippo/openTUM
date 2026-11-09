@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "alertas.schema.json",
+  "title": "Alertas emitidas y pendientes",
+  "type": "object",
+  "required": [
+    "alertas"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "alertas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/registro"
+      }
+    }
+  },
+  "$defs": {
+    "registro": {
+      "type": "object",
+      "required": [
+        "clave",
+        "proveedor",
+        "metrica",
+        "tipo",
+        "registradaEn",
+        "notificada"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "clave": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "proveedor": {
+          "enum": [
+            "claude_code",
+            "codex",
+            "xai",
+            "antigravity"
+          ]
+        },
+        "metrica": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "tipo": {
+          "enum": [
+            "UMBRAL_CUOTA",
+            "SALDO_BAJO",
+            "CONSUMO_CREDITOS"
+          ]
+        },
+        "umbral": {
+          "type": "number"
+        },
+        "registradaEn": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "notificada": {
+          "type": "boolean"
+        },
+        "reinicioVentana": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

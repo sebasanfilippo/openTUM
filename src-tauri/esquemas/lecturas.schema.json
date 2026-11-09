@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lecturas.schema.json",
+  "title": "Últimas lecturas válidas por proveedor",
+  "type": "object",
+  "propertyNames": {
+    "enum": [
+      "claude_code",
+      "codex",
+      "xai",
+      "antigravity"
+    ]
+  },
+  "additionalProperties": {
+    "$ref": "#/$defs/lectura"
+  },
+  "$defs": {
+    "lectura": {
+      "type": "object",
+      "required": [
+        "obtenidaEn",
+        "estado",
+        "metricas"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "obtenidaEn": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "estado": {
+          "enum": [
+            "ACTUALIZADO",
+            "DESACTUALIZADO",
+            "CREDENCIAL_INVALIDA",
+            "PERMISO_INSUFICIENTE",
+            "LIMITE_CONSULTA",
+            "SIN_CONEXION",
+            "FORMATO_NO_RECONOCIDO",
+            "NO_DISPONIBLE"
+          ]
+        },
+        "detalleEstado": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "metricas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/metrica"
+          }
+        }
+      }
+    },
+    "metrica": {
+      "type": "object",
+      "required": [
+        "nombre",
+        "valor",
+        "sentido",
+        "unidad",
+        "tipoLimite",
+        "origen",
+        "esEstimado"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "valor": {
+          "type": "number"
+        },
+        "unidad": {
+          "enum": [
+            "PORCENTAJE",
+            "TOKENS",
+            "SOLICITUDES",
+            "CREDITOS",
+            "USD"
+          ]
+        },
+        "sentido": {
+          "enum": [
+            "CONSUMIDO",
+            "DISPONIBLE"
+          ]
+        },
+        "limite": {
+          "type": "number"
+        },
+        "tipoLimite": {
+          "enum": [
+            "CUOTA",
+            "LIMITE_TASA",
+            "TOPE_GASTO",
+            "SALDO"
+          ]
+        },
+        "origen": {
+          "enum": [
+            "CLI",
+            "ARCHIVO_LOCAL",
+            "API",
+            "CABECERA"
+          ]
+        },
+        "esEstimado": {
+          "type": "boolean"
+        },
+        "ventana": {
+          "$ref": "#/$defs/ventana"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "unidad": {
+                "const": "PORCENTAJE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ventana": {
+      "type": "object",
+      "required": [
+        "duracion"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "duracion": {
+          "type": "string",
+          "format": "duration"
+        },
+        "reinicioEn": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
