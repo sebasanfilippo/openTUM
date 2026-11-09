@@ -9,4 +9,3 @@ el enfoque de los siguientes proyectos, publicados bajo licencia MIT. openTUM no
 implementa en Rust la interpretación de las respuestas a partir de la documentación de referencia.
 
 - OpenUsage, Copyright (c) Robin Ebers. https://github.com/robinebers/openusage
-- OpenQuota, Copyright (c) 2026 deviffyy. https://github.com/deviffyy/openquota

@@ -24,7 +24,7 @@ chrono = { version = "0.4", features = ["serde"] }
 reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }
 secret-service = { version = "5", default-features = false, features = ["rt-async-io-crypto-rust"] }
 jsonschema = { version = "0.33", default-features = false }
-notify-rust = "4"
+zbus = { version = "5", default-features = false, features = ["blocking-api", "async-io"] }
 regex = "1"
 base64 = "0.22"
 portable-pty = "0.9"

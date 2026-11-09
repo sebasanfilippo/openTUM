@@ -9,6 +9,7 @@ pub mod config;
 pub mod credenciales;
 pub mod esquemas;
 pub mod modelo;
+pub mod notificaciones;
 pub mod nucleo;
 
 use crate::config::Configuracion;
@@ -248,10 +249,9 @@ pub fn run() {
             let h2 = handle.clone();
             nucleo.iniciar(
                 Box::new(move |aviso| {
-                    let mut n = notify_rust::Notification::new();
-                    n.appname("openTUM").summary(&aviso.titulo).body(&aviso.cuerpo).icon("dialog-information");
-                    if aviso.urgente { n.urgency(notify_rust::Urgency::Critical); }
-                    if let Err(e) = n.show() { log::warn!("notificación no entregada: {e}"); }
+                    if let Err(e) = notificaciones::mostrar(&aviso.titulo, &aviso.cuerpo, aviso.urgente) {
+                        log::warn!("notificación no entregada: {e}");
+                    }
                     let _ = h1.emit("aviso", (&aviso.titulo, &aviso.cuerpo));
                 }),
                 Box::new(move || {
